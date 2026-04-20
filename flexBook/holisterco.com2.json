@@ -1,0 +1,202 @@
+[
+    {
+        "command": "storeValue",
+        "value": "https://www.hollisterco.com/shop/UserOrderHistoryDisplay",
+        "result": "ordersLinksUrl"
+    },
+    {
+        "command": "open",
+        "value": "${ordersLinksUrl}"
+    },
+    {
+        "command": "getLocalStorageItem",
+        "key": "orderDetailsParams",
+        "result": "elementContent"
+    },
+    {
+        "command": "callFunction",
+        "action": "extractSubstring",
+        "parameters": {
+            "fullString": "${elementContent}",
+            "stringAfter": "\"orderEmail\":\"",
+            "stringBefore": "\""
+        },
+        "result": "customerId"
+    },
+    {
+        "command": "initiateArray",
+        "result": "dataArray"
+    },
+    {
+        "command": "waitForElementVisible",
+        "selector": ".account-block"
+    },
+    {
+        "command": "selectorLength",
+        "selector": ".account-block",
+        "result": "ordersCount"
+    },
+    {
+        "command": "storeValue",
+        "value": "0",
+        "result": "i"
+    },
+    {
+        "command": "while",
+        "condition": {
+            "left": "${i}",
+            "operator": "<",
+            "right": "${ordersCount}"
+        },
+        "loopActions": [
+            {
+                "command": "store",
+                "type": "innerText",
+                "selector": "span[data-text-key='CUSTOMER_ORDER_HEADING']",
+                "result": "orderId"
+            },
+            {
+                "command": "store",
+                "type": "innerText",
+                "selector": ".transaction-summary > tbody > tr:first-child td[class*='amount']",
+                "result": "orderDate"
+            },
+            {
+                "command": "click",
+                "selector": "button > span[data-text-key='GLB_VIEWORDERDETAILS']"
+            },
+            {
+                "command": "waitForElementVisible",
+                "selector": ".account-content-container"
+            },
+            {
+                "command": "storeUrl",
+                "result": "orderUrl"
+            },
+            {
+                "command": "store",
+                "type": "innerText",
+                "selector": "span[data-testid='order-details-block-status']",
+                "result": "deliveryStatus"
+            },
+            {
+                "command": "store",
+                "type": "innerText",
+                "selector": ".transaction-summary > tbody > tr:nth-child(2) td[class*='amount']",
+                "result": "deliveryDate"
+            },
+            {
+                "command": "selectorLength",
+                "selector": ".product-template",
+                "result": "productLinksCount"
+            },
+            {
+                "command": "storeValue",
+                "value": "0",
+                "result": "j"
+            },
+            {
+                "command": "while",
+                "condition": {
+                    "left": "${j}",
+                    "operator": "<",
+                    "right": "${productLinksCount}"
+                },
+                "loopActions": [
+                    {
+                        "command": "store",
+                        "type": "element",
+                        "selector": ".product-template",
+                        "index": "${j}",
+                        "result": "prodElement"
+                    },
+                    {
+                        "command": "store",
+                        "type": "innerText",
+                        "selector": ".product-price",
+                        "element": "${prodElement}",
+                        "result": "purchasePrice"
+                    },
+                    {
+                        "command": "store",
+                        "type": "innerText",
+                        "selector": "p",
+                        "searchTxt": "qty",
+                        "element": "${prodElement}",
+                        "result": "quantityRaw"
+                    },
+                    {
+                        "command": "callFunction",
+                        "action": "extractSubstring",
+                        "parameters": {
+                            "fullString": "${quantityRaw}",
+                            "stringAfter": ":",
+                            "stringBefore": ""
+                        },
+                        "result": "quantity"
+                    },
+                    {
+                        "command": "store",
+                        "type": "innerText",
+                        "selector": ".product-name",
+                        "element": "${prodElement}",
+                        "result": "productTitle"
+                    },
+                    {
+                        "command": "store",
+                        "type": "attribute",
+                        "attribute": "src",
+                        "selector": "img",
+                        "element": "${prodElement}",
+                        "result": "image"
+                    },
+                    {
+                        "command": "store",
+                        "type": "attribute",
+                        "attribute": "href",
+                        "selector": "a",
+                        "element": "${prodElement}",
+                        "result": "productLink"
+                    },
+                    {
+                        "command": "pushToArray",
+                        "array": "dataArray",
+                        "value": {
+                            "orderId": "${orderId}",
+                            "orderDate": "${orderDate}",
+                            "deliveryStatus": "${deliveryStatus}",
+                            "deliveryDate": "${deliveryDate}",
+                            "productTitle": "${productTitle}",
+                            "productLink": "${productLink}",
+                            "purchasePrice": "${purchasePrice}",
+                            "currentPrice": "",
+                            "quantity": "${quantity}",
+                            "image": "${image}",
+                            "returnDate": "",
+                            "warranty": ""
+                        },
+                        "result": "dataArray"
+                    },
+                    {
+                        "command": "increment",
+                        "selector": "${j}",
+                        "result": "j"
+                    }
+                ]
+            },
+            {
+                "command": "open",
+                "value": "${ordersLinksUrl}"
+            },
+            {
+                "command": "waitForElementVisible",
+                "selector": ".account-block"
+            },
+            {
+                "command": "increment",
+                "selector": "${i}",
+                "result": "i"
+            }
+        ]
+    }
+]

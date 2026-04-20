@@ -1,0 +1,231 @@
+[
+    {
+        "command": "storeValue",
+        "value": "https://www.firstcry.com/orderhistory",
+        "result": "ordersLinksUrl"
+    },
+    {
+        "command": "open",
+        "value": "${ordersLinksUrl}"
+    },
+    {
+        "command": "getCookieItem",
+        "key": "_$FC_UserInfo$_",
+        "result": "customerId"
+    },
+    {
+        "command": "initiateArray",
+        "result": "dataArray"
+    },
+    {
+        "command": "selectorLength",
+        "selector": ".orderhistory_sec",
+        "result": "ordersCount"
+    },
+    {
+        "command": "click",
+        "selector": ".orderhistory_sec > div > div",
+        "result": "orderUrl"
+    },
+    {
+        "command": "waitForElementVisible",
+        "selector": ".orderDetails_info"
+    },
+    {
+        "command": "storeValue",
+        "value": "0",
+        "result": "i"
+    },
+    {
+        "command": "while",
+        "condition": {
+            "left": "${i}",
+            "operator": "<",
+            "right": "${ordersCount}"
+        },
+        "loopActions": [
+            {
+                "command": "store",
+                "selector": ".orderDetails_info > div > span",
+                "type": "innerText",
+                "result": "elementOrderId"
+            },
+            {
+                "command": "callFunction",
+                "action": "extractSubstring",
+                "parameters": {
+                    "fullString": "${elementOrderId}",
+                    "stringAfter": ":",
+                    "stringBefore": ""
+                },
+                "result": "orderId"
+            },
+            {
+                "command": "store",
+                "selector": ".orderDetails_info > p",
+                "type": "innerText",
+                "result": "elementOrderDate"
+            },
+            {
+                "command": "callFunction",
+                "action": "extractSubstring",
+                "parameters": {
+                    "fullString": "${elementOrderDate}",
+                    "stringAfter": ",",
+                    "stringBefore": ","
+                },
+                "result": "orderDate"
+            },
+            {
+                "command": "store",
+                "selector": ".orderDetails_info > p:nth-child(4)",
+                "type": "innerText",
+                "result": "elementDeliveryStatus"
+            },
+            {
+                "command": "callFunction",
+                "action": "extractSubstring",
+                "parameters": {
+                    "fullString": "${elementDeliveryStatus}",
+                    "stringAfter": ":",
+                    "stringBefore": ""
+                },
+                "result": "deliveryStatus"
+            },
+            {
+                "command": "store",
+                "selector": ".single_card > div > p:last-child",
+                "type": "innerText",
+                "result": "elementDeliveryDate"
+            },
+            {
+                "command": "callFunction",
+                "action": "extractSubstring",
+                "parameters": {
+                    "fullString": "${elementDeliveryDate}",
+                    "stringAfter": ",",
+                    "stringBefore": ","
+                },
+                "result": "deliveryDate"
+            },
+            {
+                "command": "selectorLength",
+                "selector": ".devproductdetails",
+                "result": "productLinksCount"
+            },
+            {
+                "command": "storeValue",
+                "value": "0",
+                "result": "j"
+            },
+            {
+                "command": "while",
+                "condition": {
+                    "left": "${j}",
+                    "operator": "<",
+                    "right": "${productLinksCount}"
+                },
+                "loopActions": [
+                    {
+                        "command": "store",
+                        "type": "element",
+                        "selector": ".devproductdetails",
+                        "index": "${j}",
+                        "result": "prodElement"
+                    },
+                    {
+                        "command":"store",
+                        "selector": ".product_info p:nth-child(2)",
+                        "element": "${prodElement}",
+                        "type":"innerText",
+                        "result":"elementProductPrice"
+                    },
+                    {
+                        "command":"trimString",
+                        "fullString":"${elementProductPrice}",
+                        "result":"productPriceTrim"
+                    },
+                    {
+                        "command":"replaceString",
+                        "fullString":"${productPriceTrim}",
+                        "find":" ",
+                        "replace":".",
+                        "result":"productsPrice"
+                    },
+                    {
+                        "command": "store",
+                        "type": "innerText",
+                        "selector": ".product_info p:nth-child(3) span",
+                        "element": "${prodElement}",
+                        "result": "elementProductQty"
+                    },
+                    {
+                        "command":"callFunction",
+                        "action":"extractSubstring",
+                        "parameter":{
+                            "fullstring":"${elementProductQty}",
+                            "stringAfter":": ",
+                            "stringBefore":""
+                        },
+                        "result":"quantity"
+                    },
+                    {
+                        "command": "store",
+                        "type": "innerText",
+                        "selector": ".product_info p",
+                        "element": "${prodElement}",
+                        "result": "productTitle"
+                    },
+                    {
+                        "command": "store",
+                        "type": "attribute",
+                        "attribute": "src",
+                        "selector": "div img",
+                        "element": "${prodElement}",
+                        "result": "image"
+                    },
+                    {
+                        "command":"store",
+                        "type":"attribute",
+                        "attribute":"data-producturl",
+                        "selector":".product_info p[data-producturl]",
+                        "result":"ProductLink"
+                    },
+                    {
+                        "command": "pushToArray",
+                        "array": "dataArray",
+                        "value": {
+                            "orderId": "${orderId}",
+                            "orderDate": "${orderDate}",
+                            "deliveryStatus": "${deliveryStatus}",
+                            "deliveryDate": "${deliveryDate}",
+                            "productTitle": "${productTitle}",
+                            "productLink": "${productLink}",
+                            "purchasePrice": "${purchasePrice}",
+                            "currentPrice": "",
+                            "quantity": "${quantity}",
+                            "image": "${image}",
+                            "returnDate": "",
+                            "warranty": ""
+                        },
+                        "result": "dataArray"
+                    },
+                    {
+                        "command": "increment",
+                        "selector": "${j}",
+                        "result": "j"
+                    }
+                ]
+            },
+            {
+                "command": "open",
+                "value": "${ordersLinksUrl}"
+            },
+            {
+                "command": "increment",
+                "selector": "${i}",
+                "result": "i"
+            }
+        ]
+    }
+]

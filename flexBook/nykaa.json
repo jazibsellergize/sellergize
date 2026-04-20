@@ -1,0 +1,158 @@
+[
+    {
+        "command": "storeValue",
+        "value": "https://www.nykaa.com/my/orders?mode=fullscreen&use_deeplink_url=true&dl_type=order&source=accountPage&interactionLocation=viewallorders%3Aerrorbanner",
+        "result": "ordersLinksUrl"
+    },
+    {
+        "command": "open",
+        "value": "${ordersLinksUrl}"
+    },
+    {
+        "command": "getLocalStorageItem",
+        "key": "ordersUserConfig",
+        "result": "elementContent"
+    },
+    {
+        "command": "callFunction",
+        "action": "extractSubstring",
+        "parameters": {
+            "fullString": "${elementContent}",
+            "stringBefore": "email\":\"",
+            "stringAfter": "\""
+        },
+        "result": "customerId"
+    },
+    {
+        "command": "initiateArray",
+        "result": "dataArray"
+    },
+    {
+        "command": "selectorLength",
+        "selector": ".css-d22w83",
+        "result": "prodElement"
+    },
+    {
+        "command": "storeValue",
+        "value": "0",
+        "result": "i"
+    },
+    {
+        "command": "while",
+        "condition": {
+            "left": "${i}",
+            "operator": "<",
+            "right": "${prodElement}"
+        },
+        "loopActions": [
+            {
+                "command": "store",
+                "type": "innerText",
+                "selector": ".css-1msk6o9",
+                "result": "orderId",
+                "index": "${i}"
+            },
+            {
+                "command": "store",
+                "type": "innerText",
+                "selector": ".css-1uzppxz",
+                "result": "orderDate",
+                "index": "${i}"
+            },
+            {
+                "command": "click",
+                "selector": ".css-120nera",
+                "index": "${i}"
+            },
+            {
+                "command": "store",
+                "type": "innerText",
+                "selector": ".css-d22w83",
+                "result": "productOrderId"
+            },
+            {
+                "command": "if",
+                "condition": {
+                    "left": "${orderId}",
+                    "operator": "===",
+                    "right": "${productOrderId}"
+                },
+                "ifAction": [
+                    {
+                        "command": "storeValue",
+                        "value": "${orderDate}",
+                        "index": "${i}",
+                        "result" : "orderDate"
+                        
+                    }
+                ]
+            },
+            {
+                "command": "store",
+                "type": "element",
+                "selector": ".css-d22w83",
+                "result": "prodElement"
+            },
+            {
+                "command": "store",
+                "type": "innerText",
+                "selector": ".css-1jibmi3 p:first-child",
+                "result": "deliveryStatus"
+            },
+            {
+                "command": "store",
+                "type": "innerText",
+                "selector": ".css-8sazvn p:last-child",
+                "element": "${j}",
+                "result": "purchasePrice"
+            },
+            {
+                "command": "store",
+                "type": "innerText",
+                "selector": ".css-1l4on43",
+                "element": "${j}",
+                "result": "productTitle"
+            },
+            {
+                "command": "store",
+                "type": "attribute",
+                "attribute": "src",
+                "selector": ".css-11givjn img",
+                "element": "${j}",
+                "result": "image"
+            },
+            {
+                "command": "pushToArray",
+                "array": "dataArray",
+                "value": {
+                    "orderId": "${orderId}",
+                    "orderDate": "${orderDate}",
+                    "deliveryStatus": "${deliveryStatus}",
+                    "deliveryDate": "${deliveryDate}",
+                    "productTitle": "${productTitle}",
+                    "productLink": "",
+                    "purchasePrice": "${purchasePrice}",
+                    "currentPrice": "",
+                    "quantity": "",
+                    "image": "${image}",
+                    "returnDate": "",
+                    "warranty": ""
+                },
+                "result": "dataArray"
+            }
+        ]
+    },
+    {
+        "command": "open",
+        "value": "${ordersLinksUrl}"
+    },
+    {
+        "command": "waitForElementVisible",
+        "selector": ".order-detail-btn-revamp"
+    },
+    {
+        "command": "increment",
+        "selector": "${i}",
+        "result": "i"
+    }
+]

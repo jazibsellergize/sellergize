@@ -1,0 +1,207 @@
+[
+    {
+        "command": "storeValue",
+        "value": "https://www.firstcry.com/orderhistory",
+        "result": "ordersLinksUrl"
+    },
+    {
+        "command": "open",
+        "value": "${ordersLinksUrl}"
+    },
+    {
+        "command": "getLocalStorageItem",
+        "key": "userRegistries",
+        "result": "elementContent"
+    },
+    {
+        "command": "callFunction",
+        "action": "extractSubstring",
+        "parameters": {
+            "fullString": "${elementContent}",
+            "stringAfter": "\"userId\":\"",
+            "stringBefore": ""
+        },
+        "result": "customerId"
+    },
+    {
+        "command": "initiateArray",
+        "result": "dataArray"
+    },
+    {
+        "command": "selectorLength",
+        "selector": ".order-container",
+        "result": "ordersCount"
+    },
+    {
+        "command": "storeValue",
+        "value": "0",
+        "result": "i"
+    },
+    {
+        "command": "while",
+        "condition": {
+            "left": "${i}",
+            "operator": "<",
+            "right": "${ordersCount}"
+        },
+        "loopActions": [
+            {
+                "command": "store",
+                "selector": ".order-card-header div",
+                "type": "innerText",
+                "result": "elementOrderDate"
+            },
+            {
+                "command": "callFunction",
+                "action": "extractSubstring",
+                "parameters": {
+                    "fullString": "${elementOrderIdDate}",
+                    "stringAfter": ":",
+                    "stringBefore": ""
+                },
+                "result": "orderDate"
+            },
+            {
+                "command": "store",
+                "selector": ".order-card-header .order-number",
+                "type": "innerText",
+                "result": "elementOrderId"
+            },
+            {
+                "command": "callFunction",
+                "action": "extractSubstring",
+                "parameters": {
+                    "fullString": "${elementOrderId}",
+                    "stringAfter": "#",
+                    "stringBefore": ""
+                },
+                "result": "orderId"
+            },
+            {
+                "command": "store",
+                "selector": ".order-status",
+                "type": "innerText",
+                "result": "deliveryStatus"
+            },
+            {
+                "command": "store",
+                "selector": ".arrive-date",
+                "type": "innerText",
+                "result": "elementDeliveryDate"
+            },
+            {
+                "command": "callFunction",
+                "action": "extractSubstring",
+                "parameters": {
+                    "fullString": "${elementDeliveryDate}",
+                    "stringAfter": ".",
+                    "stringBefore": ""
+                },
+                "result": "deliveryDate"
+            },
+            {
+                "command": "click",
+                "selector": ".order-detail-action",
+                "result": "orderUrl"
+            },
+            {
+                "command": "waitForElementVisible",
+                "selector": ".track-package"
+            },
+            {
+                "command": "selectorLength",
+                "selector": ".product-thumbnail-wrapper",
+                "result": "productLinksCount"
+            },
+            {
+                "command": "storeValue",
+                "value": "0",
+                "result": "j"
+            },
+            {
+                "command": "while",
+                "condition": {
+                    "left": "${j}",
+                    "operator": "<",
+                    "right": "${productLinksCount}"
+                },
+                "loopActions": [
+                    {
+                        "command": "store",
+                        "type": "element",
+                        "selector": ".product-thumbnail-wrapper",
+                        "index": "${j}",
+                        "result": "prodElement"
+                    },
+                    {
+                        "command": "store",
+                        "type": "attribute",
+                        "attribute": "src",
+                        "selector": ".picture-container img",
+                        "element": "${prodElement}",
+                        "result": "image"
+                    },
+                    {
+                        "command": "store",
+                        "type": "innerText",
+                        "selector": ".product-name",
+                        "element": "${prodElement}",
+                        "result": "productTitle"
+                    },
+                    {
+                        "command": "store",
+                        "selector": "price-reg",
+                        "element": "${prodElement}",
+                        "type": "innerText",
+                        "result": "ProductPrice"
+                    },
+                    {
+                        "command": "storeValue",
+                        "value": "1",
+                        "result": "quantity"
+                    },
+                    {
+                        "command": "store",
+                        "type": "attribute",
+                        "attribute": "href",
+                        "selector": ".product-description a",
+                        "result": "ProductLink"
+                    },
+                    {
+                        "command": "pushToArray",
+                        "array": "dataArray",
+                        "value": {
+                            "orderId": "${orderId}",
+                            "orderDate": "${orderDate}",
+                            "deliveryStatus": "${deliveryStatus}",
+                            "deliveryDate": "${deliveryDate}",
+                            "productTitle": "${productTitle}",
+                            "productLink": "${productLink}",
+                            "purchasePrice": "${purchasePrice}",
+                            "currentPrice": "",
+                            "quantity": "${quantity}",
+                            "image": "${image}",
+                            "returnDate": "",
+                            "warranty": ""
+                        },
+                        "result": "dataArray"
+                    },
+                    {
+                        "command": "increment",
+                        "selector": "${j}",
+                        "result": "j"
+                    }
+                ]
+            },
+            {
+                "command": "open",
+                "value": "${ordersLinksUrl}"
+            },
+            {
+                "command": "increment",
+                "selector": "${i}",
+                "result": "i"
+            }
+        ]
+    }
+]

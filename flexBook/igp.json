@@ -1,0 +1,184 @@
+[
+    {
+        "command": "storeValue",
+        "value": "https://www.igp.com/orderhistory",
+        "result": "ordersLinksUrl"
+    },
+    {
+        "command": "open",
+        "value": "${ordersLinksUrl}"
+    },
+    {
+        "command": "store",
+        "type": "innerText",
+        "selector": ".user-phone",
+        "result": "customerId"
+    },
+    {
+        "command": "initiateArray",
+        "result": "dataArray"
+    },
+    {
+        "command": "selectorLength",
+        "selector": ".rebrand-history-container",
+        "result": "ordersCount"
+    },
+    {
+        "command": "click",
+        "selector": ".order-detail-btn-revamp",
+        "result": "orderUrl"
+    },
+    {
+        "command": "waitForElementVisible",
+        "selector": ".order-detail-btn-revamp"
+    },
+    {
+        "command": "storeValue",
+        "value": "0",
+        "result": "i"
+    },
+    {
+        "command": "while",
+        "condition": {
+            "left": "${i}",
+            "operator": "<",
+            "right": "${ordersCount}"
+        },
+        "loopActions": [
+            {
+                "command": "store",
+                "type": "innerText",
+                "selector": ".copy-order-id",
+                "result": "orderId"
+            },
+            {
+                "command": "store",
+                "type": "innerText",
+                "selector": ".order-info-status > div:last-child",
+                "result": "orderDate"
+            },
+            {
+                "command": "storeUrl",
+                "result": "orderUrl"
+            },
+            {
+                "command": "store",
+                "type": "innerText",
+                "selector": ".progress-container > div:nth-child(4) .status-type",
+                "result": "deliveryStatus"
+            },
+            {
+                "command": "store",
+                "type": "innerText",
+                "selector": ".progress-container > div:nth-child(4) .status-date",
+                "result": "deliveryDate"
+            },
+            {
+                "command": "click",
+                "selector": ".packet-level-items-header-cont",
+                "index" : "${i}"
+            },
+            {
+                "command": "selectorLength",
+                "selector": ".product-cart-unit",
+                "result": "productLinksCount"
+            },
+            {
+                "command": "storeValue",
+                "value": "0",
+                "result": "j"
+            },
+            {
+                "command": "while",
+                "condition": {
+                    "left": "${j}",
+                    "operator": "<",
+                    "right": "${productLinksCount}"
+                },
+                "loopActions": [
+                    {
+                        "command": "store",
+                        "type": "element",
+                        "selector": ".product-cart-unit",
+                        "index": "${j}",
+                        "result": "prodElement"
+                    },
+                    {
+                        "command": "store",
+                        "type": "innerText",
+                        "selector": ".product-cart-unit-name > div:nth-child(2)",
+                        "element": "${prodElement}",
+                        "result": "purchasePrice"
+                    },
+                    {
+                        "command": "store",
+                        "type": "innerText",
+                        "selector": ".product-cart-unit-attributes span > span:last-child",
+                        "element": "${prodElement}",
+                        "result": "quantity"
+                    },
+                    {
+                        "command": "store",
+                        "type": "innerText",
+                        "selector": ".product-cart-unit-name > div",
+                        "element": "${prodElement}",
+                        "result": "productTitle"
+                    },
+                    {
+                        "command": "store",
+                        "type": "attribute",
+                        "attribute": "src",
+                        "selector": "img",
+                        "element": "${prodElement}",
+                        "result": "image"
+                    },
+                    {
+                        "command": "store",
+                        "type": "attribute",
+                        "attribute": "href",
+                        "selector": "a",
+                        "element": "${prodElement}",
+                        "result": "productLink"
+                    },
+                    {
+                        "command": "pushToArray",
+                        "array": "dataArray",
+                        "value": {
+                            "orderId": "${orderId}",
+                            "orderDate": "${orderDate}",
+                            "deliveryStatus": "${deliveryStatus}",
+                            "deliveryDate": "${deliveryDate}",
+                            "productTitle": "${productTitle}",
+                            "productLink": "${productLink}",
+                            "purchasePrice": "${purchasePrice}",
+                            "currentPrice": "",
+                            "quantity": "${quantity}",
+                            "image": "${image}",
+                            "returnDate": "",
+                            "warranty": ""
+                        },
+                        "result": "dataArray"
+                    },
+                    {
+                        "command": "increment",
+                        "selector": "${j}",
+                        "result": "j"
+                    }
+                ]
+            },
+            {
+                "command": "open",
+                "value": "${ordersLinksUrl}"
+            },
+            {
+                "command": "waitForElementVisible",
+                "selector": ".order-detail-btn-revamp"
+            },
+            {
+                "command": "increment",
+                "selector": "${i}",
+                "result": "i"
+            }
+        ]
+    }
+]
