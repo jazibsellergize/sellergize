@@ -1,0 +1,79 @@
+[
+    {
+        "img": "https://cdn.bannerbuzz.com/media/offer/St_Patricks_Day_Special_C2_B1_1603-1803_US-CA_Coupon_Page_420x306.jpg",
+        "title": "Your Promotions, Our Priority",
+        "description": "25% off Sitewide",
+        "code": "Your Promotions, Our Priority",
+        "expire": "Valid till 1st April, 2026",
+        "url": "https://www.bannerbuzz.com/st-patricks-day",
+        "type": "Code"
+    },
+    {
+        "img": "https://cdn.bannerbuzz.com/media/offer/OFFER_1_1.png",
+        "title": "BBAOV350",
+        "description": "10% Off Sitewide (Minimum Order Value 350)",
+        "code": "BBAOV350",
+        "expire": "Valid till 31st December, 2026",
+        "url": "https://www.bannerbuzz.com/view-all-products",
+        "type": "Code"
+    },
+    {
+        "title": "BBAOV500",
+        "description": "15% Off Sitewide (Minimum Order Value 500)",
+        "code": "BBAOV500",
+        "expire": "Valid till 31st December, 2026",
+        "url": "https://www.bannerbuzz.com/view-all-products",
+        "type": "Code"
+    },
+    {
+        "title": "BBAOV700",
+        "description": "20% Off Sitewide (Minimum Order Value 700)",
+        "code": "BBAOV700",
+        "expire": "Valid till 31st December, 2026",
+        "url": "https://www.bannerbuzz.com/view-all-products",
+        "type": "Code"
+    },
+    {
+        "title": "Welcome Offer",
+        "description": "Get 20% Off on your First Order",
+        "code": "Welcome Offer",
+        "expire": "Valid till 31st December, 2026",
+        "url": "https://www.bannerbuzz.com/welcome-offer",
+        "type": "Code"
+    },
+    {
+        "title": "Custom Banners",
+        "url": "https://www.bannerbuzz.com/banners",
+        "type": "Deal"
+    },
+    {
+        "title": "Banner stands",
+        "url": "https://www.bannerbuzz.com/banner-stands",
+        "type": "Deal"
+    },
+    {
+        "title": "Personalized table covers & throws",
+        "url": "https://www.bannerbuzz.com/table-covers-and-throws",
+        "type": "Deal"
+    },
+    {
+        "title": "Advertising flags",
+        "url": "https://www.bannerbuzz.com/flags",
+        "type": "Deal"
+    },
+    {
+        "title": "Compliance signs",
+        "url": "https://www.bannerbuzz.com/compliance-signs",
+        "type": "Deal"
+    },
+    {
+        "title": "Marketing materials",
+        "url": "https://www.bannerbuzz.com/marketing-materials",
+        "type": "Deal"
+    },
+    {
+        "title": "Window & car decals",
+        "url": "https://www.bannerbuzz.com/window-signs",
+        "type": "Deal"
+    }
+]

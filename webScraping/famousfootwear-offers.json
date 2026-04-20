@@ -1,0 +1,41 @@
+[
+    {
+        "img": "https://osm.klarnaservices.com/images/info-page-hand-mobile.webp",
+        "title": "Payments that suit your budget",
+        "description": "Choose from flexible, transparent, and secure payment options."
+    },
+    {
+        "title": "Pay in 4",
+        "description": "Split your purchase into 4 interest-free payments, paid automatically every 2 weeks. Your first payment is collected when your order ships. No fees when you pay on time.¹ Learn more\n\n¹ APR 0%. No conditions apply. Term: 2 months. For more information, see klarna.com/ca/paylaterin4. A higher initial payment may be required for some consumers."
+    },
+    {
+        "title": "Financing",
+        "description": "Break up a larger purchase into smaller monthly payments.² At checkout, choose your timeline and complete a quick application for an instant decision. You’ll receive your payment plan by email once your order ships. learn more\n\n² APR ranges from 7.99%-29.99% based on term length, province, creditworthiness, and subject to credit approval, resulting in, for example, 6 equal monthly payments of $170.57 at 7.99% APR to $181.54 at 29.99% APR per $1000 borrowed. Minimum purchase required. A down payment may be required. Estimation of monthly payment excludes potential tax and shipping costs. Actual terms may vary depending on province, see sample terms here for Quebec and here for the rest of Canada."
+    },
+    {
+        "title": "Pay in full today",
+        "description": "Pay the full amount instantly with your credit card, debit card, or directly from your bank account. Fast and secure, with stored cards and buyer protection.³ No credit check, no fees. learn more\n\n³ Exclusions apply. learn more."
+    },
+    {
+        "title": "Shop what you love and choose Klarna at checkout.",
+        "description": "Shop what you love and choose Klarna at checkout."
+    },
+    {
+        "title": "Select your preferred payment option and complete your purchase.",
+        "description": "Select your preferred payment option and complete your purchase."
+    },
+    {
+        "title": "Use the Klarna app to manage payments, delivery tracking and more.",
+        "description": "Use the Klarna app to manage payments, delivery tracking and more."
+    },
+    {},
+    {
+        "title": "Never miss a payment with the Klarna app",
+        "description": "Manage your payments and get due date reminders on the go. Learn more."
+    },
+    {
+        "img": "https://osm.klarnaservices.com/images/info-page-help-green.webp",
+        "title": "Frequently Asked Questions",
+        "description": "Don’t see your question here? Check out Klarna’s full FAQ page. You can chat with a Klarna customer service representative by downloading the Klarna app."
+    }
+]

@@ -1,0 +1,137 @@
+{
+  "id": "152a47e9-83b8-4220-9380-ac458835e321",
+  "version": "2.0",
+  "name": "test",
+  "url": "https://google.com",
+  "tests": [{
+    "id": "98a8b3cd-0629-4dcc-abee-ce13c466414b",
+    "name": "Untitled",
+    "commands": [{
+      "id": "946ec0c2-97a7-4fe1-a7a2-f7d042933c68",
+      "comment": "",
+      "command": "executeScript",
+      "target": "return \"test\"",
+      "targets": [],
+      "value": "filename"
+    }, {
+      "id": "007b51c0-8398-4223-a36f-f08e03a0976b",
+      "comment": "",
+      "command": "open",
+      "target": "https://www.amazon.com/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "3e831c24-ade5-4f84-b305-2cf97fd7fc43",
+      "comment": "",
+      "command": "executeScript",
+      "target": "let titles = document.querySelectorAll(\".a-cardui-header\"); let titleList = []; titles.forEach((i) => {   let title = i.querySelector(\"h2\")?.innerText;   titleList.push({ title: title }); }); localStorage.setItem(\"crawl_data\", JSON.stringify(titleList)); return JSON.stringify(titleList);",
+      "targets": [],
+      "value": "titlesData"
+    }, {
+      "id": "0899264e-7f9e-4e2a-9f96-ec6c92b087db",
+      "comment": "",
+      "command": "echo",
+      "target": "${titlesData}",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "24bddf41-302a-4362-83ea-50f4f553203d",
+      "comment": "",
+      "command": "runScript",
+      "target": "var filename = ${filename}+\".json\"; var element = document.createElement(\"a\"); element.setAttribute(   \"href\",   \"data:text/plain;charset=utf-8,\" +     encodeURIComponent(localStorage.getItem(\"crawl_data\")) ); element.setAttribute(\"download\", filename); element.style.display = \"none\"; document.body.appendChild(element); element.click(); document.body.removeChild(element);",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "42a153a3-6319-40bd-b5bd-0712424aff98",
+      "comment": "",
+      "command": "pause",
+      "target": "3000",
+      "targets": [],
+      "value": ""
+    }]
+  }, {
+    "id": "d414984d-6972-4f74-9543-58c36376f317",
+    "name": "fnpoffers",
+    "commands": [{
+      "id": "24f15beb-582b-4391-9213-297cc3a386ef",
+      "comment": "",
+      "command": "executeScript",
+      "target": "return 'fnp-offers'",
+      "targets": [],
+      "value": "filename"
+    }, {
+      "id": "31b706f9-f112-4faa-86aa-bc9c974d3da3",
+      "comment": "",
+      "command": "open",
+      "target": "https://www.fnp.com/offers/coupaons-and-deals-fathers-day",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ce7edab3-b7a3-42bb-b508-ed600374f938",
+      "comment": "",
+      "command": "executeScript",
+      "target": "return (document.querySelectorAll('.offers-content').length > 0)",
+      "targets": [],
+      "value": "check"
+    }, {
+      "id": "b96d4060-6f5a-4e95-8cb9-4452f8ce0883",
+      "comment": "",
+      "command": "pause",
+      "target": "3000",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "397b5dae-1ddc-4359-b2ba-2c16e0ad3f08",
+      "comment": "",
+      "command": "if",
+      "target": "${check}",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "90448ca7-5a42-4124-a16e-91037f2a1972",
+      "comment": "",
+      "command": "executeScript",
+      "target": " let info = document.querySelectorAll(\".offers-content\");  let dataArr = [];  info.forEach(i => {      let title = i.querySelector('h4')?.innerText;     let description = i.querySelector(\".Coupons-Content p\")?.innerText;     let code = i.querySelector(\".Coupons-display h3\")?.innerText;      let row = {         title: title,         description: description,         code: code     };      dataArr.push(row); });  localStorage.setItem(\"crawl_data\", JSON.stringify(dataArr)); return JSON.stringify(dataArr);",
+      "targets": [],
+      "value": "dataArr"
+    }, {
+      "id": "3f5deba3-2f9c-4d31-b1d1-dc75caf78f54",
+      "comment": "",
+      "command": "pause",
+      "target": "2000",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ee1d68a8-b3de-4512-b640-87c2cb9f1dc6",
+      "comment": "",
+      "command": "end",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "5414628a-19aa-400a-be54-cf5c7c13e820",
+      "comment": "",
+      "command": "runScript",
+      "target": "var filename = ${filename}+\".json\"; var element = document.createElement(\"a\"); element.setAttribute(   \"href\",   \"data:text/plain;charset=utf-8,\" +     encodeURIComponent(localStorage.getItem(\"crawl_data\")) ); element.setAttribute(\"download\", filename); element.style.display = \"none\"; document.body.appendChild(element); element.click(); document.body.removeChild(element);",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "282c24f2-17c2-458c-b408-62be596b46a4",
+      "comment": "",
+      "command": "pause",
+      "target": "3000",
+      "targets": [],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "757c0f9d-dade-4964-bd79-373504fbfef8",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["98a8b3cd-0629-4dcc-abee-ce13c466414b"]
+  }],
+  "urls": ["https://google.com/"],
+  "plugins": []
+}

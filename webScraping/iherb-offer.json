@@ -1,0 +1,46 @@
+[
+    {
+        "img": "https://cloudinary.images-iherb.com/image/upload/f_auto,q_auto:eco/images/cms/banners/pdBOGO-beauty_0330_002pd_sen-us.jpg",
+        "src": "https://in.iherb.com/c/beauty?specialtyFilters=17",
+        "expire": "Offer ends 5/31/26 at 10:00:00 AM PT.",
+        "description": "No code needed. Must add at least 2 BOGO items. The lower-priced item will be free. May not be combined with other offers. Limited time offer.",
+        "type": "Deal"
+    },
+    {
+        "img": "https://cloudinary.images-iherb.com/image/upload/f_auto,q_auto:eco/images/cms/banners/pdantioxidants_0325_001pd_sen-us.jpg",
+        "src": "https://in.iherb.com/c/antioxidants?soa=true&pcode=MAR26ANTI",
+        "expire": "Offer ends 4/1/26 at 10:00:00 AM PT.",
+        "description": "Restrictions apply.",
+        "code": "MAR26ANTI",
+        "type": "Code"
+    },
+    {
+        "img": "https://cloudinary.images-iherb.com/image/upload/f_auto,q_auto:eco/images/cms/banners/pdiherbappbanner042525_003pd_sen-us.jpg",
+        "src": "https://in.iherb.com/info/app",
+        "expire": "Offer ends 12/31/30 at 10:00:00 AM PT.",
+        "description": "Offer valid for first in-app orders for select countries only. Exclusions apply. Can't be combined with other offers. Limited time offer.",
+        "code": "MYAPP15",
+        "type": "Code"
+    },
+    {
+        "img": "https://cloudinary.images-iherb.com/image/upload/f_auto,q_auto:eco/images/cms/banners/pdspecialbanner1001_008pd_sen-us.jpg",
+        "src": "https://in.iherb.com/specials?soa=true",
+        "expire": "Offer ends 12/31/30 at 10:00:00 AM PT.",
+        "description": "Restrictions apply.",
+        "type": "Deal"
+    },
+    {
+        "img": "https://cloudinary.images-iherb.com/image/upload/f_auto,q_auto:eco/images/cms/banners/pdclearance_2024_005pd_sen-us.jpg",
+        "src": "https://in.iherb.com/specials?specialtyFilters=12",
+        "expire": "Offer ends 12/31/30 at 10:00:00 AM PT.",
+        "description": "Limited time offer. Cannot be combined with other offers. Discounts reflect the products’ \"Best By\" date and are not returnable. All sales are final.",
+        "type": "Deal"
+    },
+    {
+        "img": "https://cloudinary.images-iherb.com/image/upload/f_auto,q_auto:eco/images/cms/banners/pdtrialbanner0119_002pd_sen-us.jpg",
+        "src": "https://in.iherb.com/trial-pricing",
+        "expire": "Offer ends 12/31/30 at 10:00:00 AM PT.",
+        "description": "One-time use per product and limited to first-time purchase of product only. Limit one trial item per order. May not be combined with other offers.",
+        "type": "Deal"
+    }
+]

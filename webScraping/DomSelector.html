@@ -1,0 +1,273 @@
+<p class="text">Hello</p>
+<p class="text">World</p>
+
+<script>
+  let el = document.querySelector(".text");
+  console.log(el.textContent);
+
+  // the [0] will return second element. >>> world
+  let el2 = document.querySelectorAll(".text")[1];
+  console.log(el2.textContent);
+
+  let len = document.querySelectorAll(".text");
+  console.log(len.length);
+</script>
+
+<div class="box"></div>
+<div class="box"></div>
+
+<script>
+  let boxes = document.getElementsByClassName("box");
+  console.log(boxes.length);
+
+  // tr[role="listitem"] > td >span
+  // document.querySelectorAll("tr[role='listitem'] > td >span")[3].innerText;
+  // document.querySelectorAll("table[role='list']")[0].innerText;
+
+  // document.querySelector("div[role='button'] img").getAttribute("src");
+  // document.querySelector("img").getAttribute("src");
+</script>
+
+<img id="img" />
+<script>
+  let temp = document.getElementById("img");
+  temp.setAttribute("src", "car.jpg");
+  console.log(document.getElementById("img"));
+</script>
+
+<div id="outer">
+  <div id="middle">
+    <div id="inner">
+      <span id="text"></span>
+      <div></div>
+      <p></p>
+      <h1></h1>
+    </div>
+  </div>
+</div>
+
+<script>
+  let c = document.getElementById("inner");
+  console.log(c.children);
+</script>
+
+<div id="outer">
+  <div id="middle">
+    <div id="inner">
+      <span id="text"></span>
+      <div></div>
+      <p></p>
+      <h1 id="s4"></h1>
+    </div>
+  </div>
+</div>
+
+<script>
+  let s = document.getElementById("s4");
+  console.log(s.nextElementSibling);
+</script>
+
+<div id="orbit"></div>
+<div id="orbit">
+  <div id="outer">
+    <div id="middle">
+      <div id="inner">
+        <span id="s1"></span>
+        <div id="s2"></div>
+        <p id="s3"></p>
+        <h1 id="s4"></h1>
+        <p id="s5"></p>
+      </div>
+      <div id="inner2">
+        <p id="ss1"></p>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="orbit"></div>
+
+<script>
+  let clo = document.getElementById("s3");
+  console.log(clo.closest("#outer"));
+</script>
+
+<div id="box"></div>
+<script>
+  let box = document.querySelector("#box");
+  box.classList.add("red");
+  box.classList.add("active", "red");
+  box.classList.remove("active");
+  console.log(document.getElementById("box"));
+</script>
+
+<div id="toggleDiv" style="background-color: black">
+  <h1 id="toggleH1" style="color: aliceblue">This is Toggle Example</h1>
+  <button type="button" onclick="myFunction()">Click</button>
+</div>
+
+<script>
+  function myFunction() {
+    let toggleDiv = document.querySelector("#toggleDiv");
+    let toggleH1 = document.querySelector("#toggleH1");
+
+    if (toggleDiv.classList.contains("dark")) {
+      console.log(toggleDiv);
+      toggleDiv.classList.toggle("dark", false);
+      toggleDiv.style.backgroundColor = "aliceblue";
+      toggleH1.style.color = "black";
+    } else {
+      console.log(toggleDiv);
+      toggleDiv.classList.toggle("dark", true);
+      toggleDiv.style.backgroundColor = "black";
+      toggleH1.style.color = "aliceblue";
+    }
+  }
+</script>
+
+<br /><br />
+<h4>This is Examples of Add Events Listeners</h4>
+<h5>This is Click Event</h5>
+<button id="btn">Click Me</button>
+
+<h5>This is input Event</h5>
+<input type="text" id="input" />
+<p>Text Your Are Typing in Input Box : <span id="inputValue"></span></p>
+<script>
+  let input = document.getElementById("input");
+  input.addEventListener("input", () => {
+    document.getElementById("inputValue").innerHTML = input.value;
+  });
+</script>
+
+<h5>This is Change Event</h5>
+<input type="text" id="cha" />
+<p id="chaText"></p>
+<script>
+  let cha = document.getElementById("cha");
+  cha.addEventListener("change", () => {
+    document.getElementById("chaText").innerHTML = cha.value;
+  });
+</script>
+
+<h5>This is e.target</h5>
+<button id="e">Click Me</button>
+<script>
+  let e = document.getElementById("e");
+  e.addEventListener("click", (e) => {
+    console.log("this is e.target : " + e.target);
+  });
+</script>
+
+<div class="container">Example of Create Element</div>
+<script>
+  let div = document.createElement("div");
+
+  div.className = "box";
+  div.innerText = "This is div inside Container Div";
+
+  document.querySelector(".container").append(div);
+
+  let p = document.createElement("p");
+  p.className = "info";
+  p.innerText = "This is p child append element inside parent div";
+
+  div.appendChild(p);
+</script>
+
+<div id="box1">This is Example of Remove Element</div>
+<div>
+  There is span Element with div element but got remove <span id="box2"></span>
+</div>
+<script>
+  let r = document.getElementById("box2");
+  r.remove();
+</script>
+
+<div>This is example of replace</div>
+<div class="new">This is old div</div>
+<script>
+  let divReplace = document.querySelector(".new");
+  let newBox = document.createElement("div");
+  newBox.innerText = "New Item";
+
+  divReplace.replaceWith(newBox);
+</script>
+
+<br />
+
+<input type="text" id="nameInput" placeholder="Enter name" />
+<button onclick="showName()">Show</button>
+
+<p id="output"></p>
+
+<script>
+  function showName() {
+    let val = document.getElementById("nameInput").value;
+    document.getElementById("output").innerText = val;
+  }
+</script>
+
+<br />
+<h3>Form Submit</h3>
+<form id="myForm">
+  <input type="text" id="username" placeholder="Username" />
+  <button type="submit">Submit</button>
+</form>
+
+<script>
+  let form = document.getElementById("myForm");
+
+  form.addEventListener("submit", () => {
+    let val = document.getElementById("username").value;
+    console.log("Submitted:", val);
+  });
+</script>
+
+<br />
+<h3>Prevent Default</h3>
+<form id="form2">
+  <input type="email" id="email" placeholder="Email" />
+  <button type="submit">Submit</button>
+</form>
+
+<p id="result"></p>
+
+<script>
+  let form2 = document.getElementById("form2");
+
+  form2.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    let val = document.getElementById("email").value;
+    document.getElementById("result").innerText = val;
+  });
+</script>
+
+<script>
+  // this is object example.
+
+  let info = {
+    name: "jazib",
+    lname: "patel",
+  };
+
+  console.log(info.name);
+
+  // this is forEach loop and Array
+  let num = ["jazib", "Max", "Tom"];
+  num.forEach((value, key) => {
+    console.log(key + " : " + value);
+  });
+
+  // function
+
+  function sum(a, b) {
+    return a + b;
+  }
+
+  console.log(sum(10, 10));
+
+  // arrow function
+  let addtion = (a, b) => a + b;
+  console.log(addtion(5, 2));
+</script>

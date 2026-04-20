@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Title of the webpage -->
+    <title>Practice Task 2</title>
+
+    <script>
+      // Function to validate email and password on form submit
+      function myFunction() {
+        // Get email and password input elements
+        let email = document.getElementById("email");
+        let pass = document.getElementById("pass");
+
+        // Check if email field is empty
+        if (email.value.length <= 0) {
+          alert("Field Can't Be Empty");
+        }
+
+        // Check if password length is less than 8 characters
+        if (pass.value.length < 8) {
+          alert("Password must be 8 char long");
+        }
+      }
+
+      // Function to show/hide password
+      function showHide() {
+        // Get show/hide button and password input
+        let sh = document.querySelector("#sh");
+        let pass = document.getElementById("pass");
+
+        // If button does NOT have 'show' class
+        if (!sh.classList.contains("show")) {
+          console.log(sh); // Debugging
+
+          // Change password type to text (visible)
+          pass.type = "text";
+
+          // Change button text
+          sh.innerText = "Hide";
+
+          // Add 'show' class
+          sh.classList.toggle("show", true);
+        } else {
+          console.log(sh); // Debugging
+
+          // Change password type back to password (hidden)
+          pass.type = "password";
+
+          // Change button text
+          sh.innerText = "Show";
+
+          // Remove 'show' class
+          sh.classList.toggle("show", false);
+        }
+      }
+
+      // Function to dynamically add phone number field
+      function add() {
+        // Get parent div where phone fields will be added
+        let singUp = document.getElementById("pn");
+
+        // Create label element
+        let lable = document.createElement("label");
+        lable.className = "phn";
+        lable.innerText = "Phone Number ";
+
+        // Create input field
+        let input = document.createElement("input");
+        input.type = "text";
+        input.className = "phone";
+
+        // Create remove button
+        let button = document.createElement("button");
+        button.className = "phnBtn";
+        button.type = "button";
+        button.innerText = "Remove";
+
+        // Assign click event to remove function
+        button.onclick = removeNumber;
+
+        // Append elements to parent div
+        singUp.append(lable);
+        singUp.append(input);
+        singUp.append(button);
+      }
+
+      // Function to remove phone number field
+      function removeNumber() {
+        console.log("click"); // Debugging
+
+        // Select elements (first matching ones)
+        let btn = document.querySelector(".phone");
+        let phn = document.querySelector(".phn");
+        let phnBtn = document.querySelector(".phnBtn");
+
+        // Remove elements from DOM
+        btn.remove();
+        phn.remove();
+        phnBtn.remove();
+      }
+    </script>
+  </head>
+
+  <body>
+    <!-- Page heading -->
+    <h1>Sing Up</h1>
+
+    <!-- Form start -->
+    <form action="" method="post" id="singUp">
+      <!-- Email input -->
+      <div>
+        <label>Email</label>
+        <input type="text" id="email" />
+      </div>
+
+      <!-- Password input with show/hide -->
+      <div>
+        <label>Password</label>
+        <input type="password" id="pass" />
+
+        <!-- Button to toggle password visibility -->
+        <button type="button" id="sh" onclick="showHide()">Show</button><br />
+      </div>
+
+      <!-- Dynamic phone number fields will be added here -->
+      <div id="pn"></div>
+
+      <!-- Submit button -->
+      <button type="submit" onclick="myFunction()">Submit</button>
+      <br />
+
+      <!-- Button to add phone number -->
+      <span>Add Your Phone Number : </span>
+      <button type="button" onclick="add()">Add</button>
+    </form>
+
+  </body>
+</html>

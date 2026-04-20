@@ -1,0 +1,272 @@
+# CSS Selectors for JavaScript (DOM)
+
+## 1. Basic Selectors
+- Element selector
+- Class selector
+- ID selector
+
+## 2. Combining Selectors
+- Element + class
+- Multiple classes
+- Grouping selectors
+
+## 3. Descendant & Child Selectors
+- Descendant selector (space)
+- Direct child selector (>)
+
+## 4. Sibling Selectors
+- Adjacent sibling (+)
+- General sibling (~)
+
+## 5. Attribute Selectors
+- Exact match
+- Contains (*=)
+- Starts with (^=)
+- Ends with ($=)
+
+## 6. Pseudo-classes
+- :first-child
+- :last-child
+- :nth-child()
+- :not()
+
+## 7. querySelector vs querySelectorAll
+
+## 8. Best Practices
+- Use meaningful selectors
+- Avoid deep nesting
+- Prefer stable attributes (data-*)
+- Avoid dynamic/random class names
+
+## 9. Real DOM Usage Examples
+
+## 10. Advanced Usage
+- Combining multiple conditions
+- Targeting dynamic content
+
+-------------------------------------------------------------------------
+
+
+## 1. DOM Selection & Traversal
+- querySelector / querySelectorAll
+- getElementById / getElementsByClassName
+- parentElement
+- children
+- nextElementSibling
+- closest()
+
+## 2. DOM Manipulation
+- textContent / innerHTML
+- setAttribute / getAttribute
+- classList (add, remove, toggle)
+
+## 3. Event Handling
+- addEventListener
+- click, input, change events
+- event object (e.target)
+- event bubbling
+
+## 4. Creating & Removing Elements
+- createElement
+- append / appendChild
+- remove()
+- replaceWith()
+
+## 5. Looping & NodeLists
+- forEach
+- basic loops
+
+## 6. Forms & Input Handling
+- input.value
+- form submit
+- preventDefault()
+
+## 7. JavaScript Basics (Revision)
+- variables (let, const)
+- functions
+- arrays & objects
+- arrow functions
+
+## 8. Debugging
+- console.log
+- browser DevTools
+- testing selectors
+
+## 9. Practice Projects
+- toggle show/hide
+- todo list
+- form validation
+- dynamic add/remove elements
+
+-----------------------------------------------------------------------------
+
+# Shadow DOM & iframe (Advanced DOM Topics)
+
+## 1. Shadow DOM Basics
+- What is Shadow DOM
+- Difference between normal DOM vs Shadow DOM
+- Why Shadow DOM is used (encapsulation)
+
+## 2. Accessing Shadow Root
+- element.shadowRoot
+- open vs closed shadow root
+- chaining selectors inside shadow DOM
+
+## 3. Querying Inside Shadow DOM
+- querySelector inside shadowRoot
+- nested shadow DOM traversal
+- limitations of global selectors
+
+## 4. Creating Shadow DOM
+- attachShadow({ mode: "open" })
+- adding elements inside shadow root
+
+## 5. Styling in Shadow DOM
+- style isolation
+- :host selector basics
+- global CSS not affecting shadow DOM
+
+## 6. iframe Basics
+- What is iframe
+- iframe structure (separate document)
+- use cases
+
+## 7. Accessing iframe Content
+- iframe.contentWindow
+- iframe.contentDocument
+- querySelector inside iframe
+
+## 8. Same-Origin Policy (Important)
+- same-origin vs cross-origin iframe
+- access restrictions
+- security reasons
+
+## 9. Handling Cross-Origin iframe
+- why access is blocked
+- postMessage() basics (communication)
+
+## 10. Events & Interaction
+- accessing elements inside iframe
+- adding event listeners
+- limitations with cross-origin
+
+## 11. Debugging Techniques
+- inspecting shadow DOM in DevTools
+- locating iframe content
+- handling null/undefined safely
+
+## 12. Real Use Cases
+- scraping shadow DOM elements
+- interacting with embedded widgets
+- automation with iframe content
+
+-------------------------------------------------------------------------
+
+# JavaScript: Promises, Fetch, Async/Await & Observers
+
+## 1. Promise Basics (Revision)
+- What is a Promise
+- States: pending, fulfilled, rejected
+- then() and catch()
+
+## 2. Creating Promises Manually
+- new Promise((resolve, reject) => {})
+- resolve vs reject
+- returning values
+- error handling inside Promise
+
+## 3. Promise Chaining
+- then() chaining
+- returning values between steps
+- handling multiple async steps
+
+## 4. Promise Utilities
+- Promise.all()
+- Promise.race()
+- Promise.allSettled()
+- Promise.any()
+
+## 5. Fetch API Basics
+- fetch(url)
+- GET request
+- handling response
+- response.json()
+
+## 6. Fetch with Options
+- method (GET, POST)
+- headers
+- body (JSON.stringify)
+- content-type
+
+## 7. Error Handling in Fetch
+- network errors
+- response.ok check
+- throwing manual errors
+
+## 8. Async/Await Basics
+- async function
+- await keyword
+- converting then() to async/await
+
+## 9. Try-Catch with Async/Await
+- handling errors with try-catch
+- fallback logic
+
+## 10. Parallel vs Sequential Calls
+- await one by one
+- Promise.all for parallel
+- performance difference
+
+## 11. Manual Await Handling
+- wrapping async calls
+- handling multiple awaits
+- avoiding blocking UI
+
+## 12. Observer Basics
+- What are Observers in JavaScript
+- Why Observers are used
+- Event-driven vs Observer pattern
+
+## 13. MutationObserver (Very Important)
+- observing DOM changes
+- new MutationObserver(callback)
+- observe(target, config)
+- childList, attributes, subtree
+- disconnect()
+
+## 14. IntersectionObserver
+- detecting element visibility
+- lazy loading use case
+- threshold, root, rootMargin
+- observe() / unobserve()
+
+## 15. ResizeObserver
+- detecting element size changes
+- responsive UI handling
+
+## 16. PerformanceObserver (Intro)
+- monitoring performance metrics
+- basic usage
+
+## 17. Observer Use Cases
+- dynamic content detection (SPA)
+- infinite scroll
+- lazy loading images
+- detecting DOM updates for scraping
+
+## 18. Debugging Observers
+- logging mutations
+- avoiding infinite loops
+- disconnecting observers properly
+
+## 19. Real Use Cases
+- API data fetching
+- form submission
+- loading states
+- retry logic
+- DOM change tracking
+
+## 20. Debugging Async Code
+- console.log with async
+- catching unhandled rejections
+- common mistakes

@@ -1,0 +1,49 @@
+{
+  "id": "152a47e9-83b8-4220-9380-ac458835e321",
+  "version": "2.0",
+  "name": "test",
+  "url": "https://google.com",
+  "tests": [{
+    "id": "98a8b3cd-0629-4dcc-abee-ce13c466414b",
+    "name": "Untitled",
+    "commands": [{
+      "id": "007b51c0-8398-4223-a36f-f08e03a0976b",
+      "comment": "",
+      "command": "open",
+      "target": "https://www.amazon.com/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ed6195aa-caac-4dbd-81fc-3b89431ebcd3",
+      "comment": "",
+      "command": "store",
+      "target": "titlesData",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "3e831c24-ade5-4f84-b305-2cf97fd7fc43",
+      "comment": "",
+      "command": "executeScript",
+      "target": "let titles=document.querySelectorAll(\".a-cardui-header\");let titleList=[];titles.forEach(i=>{let title=i.querySelector(\"h2\")?.innerText;titleList.push({title:title});});return JSON.stringify(titleList);",
+      "targets": [],
+      "value": "titlesData"
+    }, {
+      "id": "0899264e-7f9e-4e2a-9f96-ec6c92b087db",
+      "comment": "",
+      "command": "echo",
+      "target": "${titlesData}",
+      "targets": [],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "757c0f9d-dade-4964-bd79-373504fbfef8",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["98a8b3cd-0629-4dcc-abee-ce13c466414b"]
+  }],
+  "urls": ["https://google.com/"],
+  "plugins": []
+}
