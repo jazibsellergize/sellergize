@@ -1,0 +1,219 @@
+[
+    {
+        "command": "storeValue",
+        "value": "https://www.lg.com/us/mylg/my-order",
+        "result": "ordersLinksUrl"
+    },
+    {
+        "command": "open",
+        "value": "${ordersLinksUrl}"
+    },
+    {
+        "command": "getLocalStorageItem",
+        "key": "LG5_IsLogin",
+        "result": "customerId"
+    },
+    {
+        "command": "initiateArray",
+        "result": "dataArray"
+    },
+    {
+        "command": "waitForElementVisible",
+        "selector": ".MuiButton-containedPrimary"
+    },
+    {
+        "command": "selectorLength",
+        "selector": ".MuiButton-containedPrimary",
+        "searchTxt": "manage order",
+        "result": "ordersCount"
+    },
+    {
+        "command": "storeValue",
+        "value": "0",
+        "result": "i"
+    },
+    {
+        "command": "while",
+        "condition": {
+            "left": "${i}",
+            "operator": "<",
+            "right": "${ordersCount}"
+        },
+        "loopActions": [
+            {
+                "command": "click",
+                "selector": ".MuiButton-containedPrimary",
+                "searchTxt": "manage order",
+                "index": "${i}"
+            },
+            {
+                "command": "waitForElementVisible",
+                "selector": "#order-shipment-card"
+            },
+            {
+                "command": "store",
+                "type": "innerText",
+                "selector": "p",
+                "searchTxt": "order placed:",
+                "result": "orderDateRaw"
+            },
+            {
+                "command": "callFunction",
+                "action": "extractSubstring",
+                "parameters": {
+                    "fullString": "${orderDateRaw}",
+                    "stringAfter": ":",
+                    "stringBefore": ""
+                },
+                "result": "orderDate"
+            },
+            {
+                "command": "store",
+                "type": "innerText",
+                "selector": "p",
+                "searchTxt": "status:",
+                "result": "deliveryStatusRaw"
+            },
+            {
+                "command": "callFunction",
+                "action": "extractSubstring",
+                "parameters": {
+                    "fullString": "${deliveryStatusRaw}",
+                    "stringAfter": ":",
+                    "stringBefore": ""
+                },
+                "result": "deliveryStatus"
+            },
+            {
+                "command": "store",
+                "type": "innerText",
+                "selector": "p",
+                "searchTxt": "order number:",
+                "result": "orderIdRaw"
+            },
+            {
+                "command": "callFunction",
+                "action": "extractSubstring",
+                "parameters": {
+                    "fullString": "${orderIdRaw}",
+                    "stringAfter": ":",
+                    "stringBefore": ""
+                },
+                "result": "orderId"
+            },
+            {
+                "command": "selectorLength",
+                "selector": ".css-b5yxh9",
+                "result": "productLinksCount"
+            },
+            {
+                "command": "storeValue",
+                "value": "0",
+                "result": "j"
+            },
+            {
+                "command": "while",
+                "condition": {
+                    "left": "${j}",
+                    "operator": "<",
+                    "right": "${productLinksCount}"
+                },
+                "loopActions": [
+                    {
+                        "command": "store",
+                        "type": "element",
+                        "selector": ".css-b5yxh9",
+                        "index": "${j}",
+                        "result": "prodElement"
+                    },
+                    {
+                        "command": "store",
+                        "type": "attribute",
+                        "attribute": "src",
+                        "selector": "img",
+                        "element": "${prodElement}",
+                        "result": "image"
+                    },
+                    {
+                        "command": "store",
+                        "type": "innerText",
+                        "selector": "span.MuiTypography-subtitle3",
+                        "index": "0",
+                        "element": "${prodElement}",
+                        "result": "productTitle"
+                    },
+                    {
+                        "command": "store",
+                        "type": "innerText",
+                        "selector": "span.MuiTypography-subtitle3",
+                        "index": "1",
+                        "element": "${prodElement}",
+                        "result": "purchasePrice"
+                    },
+                    {
+                        "command": "store",
+                        "type": "innerText",
+                        "selector": "p",
+                        "searchTxt": "est. delivery",
+                        "element": "${prodElement}",
+                        "result": "deliveryDateRaw"
+                    },
+                    {
+                        "command": "callFunction",
+                        "action": "extractSubstring",
+                        "parameters": {
+                            "fullString": "${deliveryDateRaw}",
+                            "stringAfter": "delivery",
+                            "stringBefore": ""
+                        },
+                        "result": "deliveryDate"
+                    },
+                    {
+                        "command": "store",
+                        "type": "attribute",
+                        "attribute": "href",
+                        "selector": "a",
+                        "result": "productLink"
+                    },
+                    {
+                        "command": "pushToArray",
+                        "array": "dataArray",
+                        "value": {
+                            "orderId": "${orderId}",
+                            "orderDate": "${orderDate}",
+                            "deliveryStatus": "${deliveryStatus}",
+                            "deliveryDate": "${deliveryDate}",
+                            "productTitle": "${productTitle}",
+                            "productLink": "${productLink}",
+                            "purchasePrice": "${purchasePrice}",
+                            "currentPrice": "",
+                            "quantity": "1",
+                            "image": "${image}",
+                            "returnDate": "",
+                            "warranty": ""
+                        },
+                        "result": "dataArray"
+                    },
+                    {
+                        "command": "increment",
+                        "selector": "${j}",
+                        "result": "j"
+                    }
+                ]
+            },
+            {
+                "command": "open",
+                "value": "${ordersLinksUrl}"
+            },
+            {
+                "command": "waitForElementVisible",
+                "selector": ".MuiButton-containedPrimary"
+            },
+            {
+                "command": "increment",
+                "selector": "${i}",
+                "result": "i"
+            }
+        ]
+    }
+]
